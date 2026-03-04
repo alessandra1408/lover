@@ -1,8 +1,7 @@
-/* ================= GERAL ================= */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #111, #1c1c1c);
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
   color: white;
   overflow-x: hidden;
 }
@@ -11,229 +10,106 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: -1;
-}
-
-/* Div para os confetes de coração */
-#confete-hearts {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999;
+  z-index: -1; /* Fica por trás de tudo */
 }
 
 .container {
-  padding: 20px;
+  padding: 10px;
   text-align: center;
 }
 
-/* Centralização Vertical das Seções */
 .section {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 0;
 }
 
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.counter-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #ff9bb3;
-  text-shadow: 0 0 10px rgba(255, 155, 179, 0.3);
-}
-
-/* ================= CONTADOR ================= */
+/* ================= COUNTER EM LINHA ================= */
 #counter {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-.time-block {
-  text-align: center;
-  min-width: 70px;
+  align-items: baseline;
+  gap: 8px; /* Espaço reduzido para caber tudo */
+  margin-bottom: 30px;
 }
 
 .time-block span {
-  font-size: 45px;
+  font-size: 28px; /* Tamanho reduzido para mobile */
   font-weight: bold;
-  background: linear-gradient(135deg, #ff4d88, #ff99bb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: block;
+  color: #ff9bb3;
 }
 
 .time-block small {
-  font-size: 14px;
-  color: #aaa;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 12px;
+  color: #888;
+  margin-left: 2px;
 }
 
-/* ================= BOTÃO INICIAL ================= */
+/* ================= BOTÃO ================= */
 .start-btn {
-  background: linear-gradient(135deg, #ff4d88, #ff85a2);
+  background: #ff4d88;
   border: none;
-  padding: 16px 32px;
-  font-size: 17px;
+  padding: 12px 24px;
   color: white;
-  border-radius: 50px;
+  border-radius: 25px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(255, 77, 136, 0.4);
-  transition: all 0.3s ease;
-  font-weight: 600;
+  transition: 0.3s;
 }
 
-.start-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 15px 35px rgba(255, 77, 136, 0.6);
-}
-
-/* ================= SLIDER (FADE LENTO) ================= */
+/* ================= SLIDER (FIX BOTÃO) ================= */
 .story-slider {
   position: relative;
-  max-width: 450px;
-  width: 95%;
+  max-width: 400px;
   margin: auto;
 }
 
 .slides-container {
   position: relative;
-  min-height: 520px; /* Ajuste conforme o tamanho das suas fotos */
+  min-height: 400px;
 }
 
 .slide {
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
-  transform: scale(0.96);
-  z-index: 1;
-  pointer-events: none; /* Crucial: slides invisíveis não bloqueiam cliques */
+  transition: opacity 1.5s ease;
+  pointer-events: none; /* Isso impede que a div invisível bloqueie o clique */
 }
 
 .slide.active {
   opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  z-index: 5;
-  position: relative; /* Faz o container respeitar a altura do slide ativo */
+  position: relative;
   pointer-events: auto;
 }
 
 .slide img {
   width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  display: block;
+  border-radius: 15px;
 }
 
-.no-photo {
-  height: 320px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #2b2b2b, #1a1a1a);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 80px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-.caption {
-  margin-top: 25px;
-  padding: 0 10px;
-}
-
-.caption h3 {
-  font-size: 20px;
-  color: #ff85a2;
-  margin-bottom: 10px;
-}
-
-.caption p {
-  font-size: 16px;
-  color: #eee;
-  line-height: 1.6;
-  font-style: italic;
-}
-
-/* ================= SETAS DE NAVEGAÇÃO ================= */
+/* ================= SETAS ================= */
 .nav {
   position: absolute;
-  top: 35%; /* Centraliza na altura da imagem */
+  top: 40%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 50%;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
   color: white;
-  z-index: 100; /* Sempre no topo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10; /* Garante que fiquem acima das fotos */
 }
 
-.prev { left: -20px; }
-.next { right: -20px; }
+.prev { left: -10px; }
+.next { right: -10px; }
 
-.nav:hover {
-  background: #ff85a2;
-  border-color: transparent;
-  transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0 20px rgba(255, 133, 162, 0.5);
-}
-
-.nav:active {
-  transform: translateY(-50%) scale(0.9);
-}
-
-/* ================= ANIMAÇÃO DAS SETAS ================= */
-@keyframes floatArrows {
-  0%, 100% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-50%) translateX(6px); }
-}
-
-.next { animation: floatArrows 3s ease-in-out infinite; }
-.prev { animation: floatArrows 3s ease-in-out infinite reverse; }
-
-/* ================= RESPONSIVIDADE ================= */
 @media (max-width: 480px) {
-  .time-block span {
-    font-size: 36px;
-  }
-  
-  .time-block {
-    min-width: 60px;
-  }
-
-  .prev { left: 0px; }
-  .next { right: 0px; }
-
-  .nav {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
+  .time-block span { font-size: 22px; }
+  .prev { left: 5px; }
+  .next { right: 5px; }
 }
