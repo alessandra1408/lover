@@ -54,19 +54,63 @@ function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
   if (slides.length === 0) return;
 
-  // Remove active de todos
-  slides.forEach(slide => slide.classList.remove("active"));
+  // Garante que o índice atualize corretamente antes de aplicar as classes
+  slides.forEach(slide => {
+    slide.classList.remove("active");
+    slide.style.zIndex = "1";
+  });
 
-  // Calcula o próximo índice circularmente
   currentSlide = (index + slides.length) % slides.length;
   
-  // Adiciona active ao atual
-  slides[currentSlide].classList.add("active");
+  const activeSlide = slides[currentSlide];
+  activeSlide.classList.add("active");
+  activeSlide.style.zIndex = "2";
+
+  // Dispara o confete de corações a cada troca!
+  lancarConfete();
 }
 
-function nextSlide() { showSlide(currentSlide + 1); }
-function prevSlide() { showSlide(currentSlide - 1); }
+// Funções chamadas pelos botões
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
 
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+// ================= EFEITO DE CONFETE (CORAÇÕES) =================
+
+function lancarConfete() {
+  tsParticles.load("confete-hearts", {
+    fullScreen: { enable: true, zIndex: 100 },
+    particles: {
+      number: { value: 0 },
+      color: { value: ["#ff4d88", "#ffb3c1", "#ff85a2"] },
+      shape: {
+        type: "character",
+        options: {
+          character: { value: ["❤️", "💖", "💕", "🌸"] }
+        }
+      },
+      opacity: { value: 1 },
+      size: { value: { min: 10, max: 20 } },
+      move: {
+        enable: true,
+        gravity: { enable: true, acceleration: 10 },
+        speed: { min: 10, max: 20 },
+        direction: "top",
+        outModes: { default: "destroy" }
+      }
+    },
+    emitters: {
+      direction: "top",
+      rate: { quantity: 5, delay: 0.1 },
+      life: { duration: 0.5, count: 1 },
+      position: { x: 50, y: 100 }
+    }
+  });
+}
 // ================= PARTÍCULAS =================
 
 tsParticles.load("tsparticles", {
