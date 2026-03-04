@@ -1,4 +1,4 @@
-/* ================= ESTRUTURA ================= */
+/* ================= GERAL ================= */
 body {
   margin: 0;
   padding: 0;
@@ -15,63 +15,64 @@ body {
   z-index: -1;
 }
 
-/* Força cada seção a ter pelo menos o tamanho da tela inteira */
+/* ================= SEÇÕES (100% da tela) ================= */
 .hero, .section {
   width: 100%;
-  min-height: 100vh; 
+  min-height: 100vh; /* Garante que uma seção não encoste na outra */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  padding: 20px;
 }
 
-/* ================= CONTADOR ================= */
+/* ================= CONTADOR EM UMA LINHA ================= */
 #counter {
   display: flex;
-  flex-wrap: nowrap; /* Garante uma linha só */
+  flex-wrap: nowrap; /* Não deixa quebrar linha */
   justify-content: center;
   align-items: baseline;
-  gap: 10px;
-  margin: 30px 0;
+  gap: 8px;
+  margin: 20px 0 40px 0;
 }
 
 .time-block span {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   color: #ff4d88;
 }
 
 .time-block small {
-  font-size: 14px;
-  color: #aaa;
-  margin-left: 2px;
+  font-size: 12px;
+  color: #888;
+  margin-left: 1px;
 }
 
-/* ================= BOTÃO ================= */
+/* ================= BOTÃO INICIAL ================= */
 .start-btn {
-  background: #ff4d88;
+  background: linear-gradient(135deg, #ff4d88, #ff85a2);
   border: none;
-  padding: 15px 30px;
+  padding: 14px 28px;
   color: white;
   border-radius: 30px;
   cursor: pointer;
   font-weight: bold;
+  box-shadow: 0 5px 15px rgba(255, 77, 136, 0.3);
   transition: 0.3s;
 }
 
-/* ================= SLIDER (FIX DO CLIQUE) ================= */
+/* ================= SLIDER CORRIGIDO ================= */
 .story-slider {
   position: relative;
-  max-width: 420px;
-  width: 90%;
-  margin: auto;
+  max-width: 400px;
+  width: 100%;
 }
 
 .slides-container {
   position: relative;
   width: 100%;
-  min-height: 450px; /* Altura mínima para não colar na legenda */
+  min-height: 480px; /* Espaço para foto + legenda */
 }
 
 .slide {
@@ -80,21 +81,36 @@ body {
   left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 1.5s ease;
-  pointer-events: none; /* Faz os slides invisíveis serem ignorados pelo clique */
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out;
+  pointer-events: none; /* Slides invisíveis não recebem cliques */
 }
 
 .slide.active {
   opacity: 1;
-  position: relative; /* O slide ativo define a altura real do container */
-  pointer-events: auto;
+  visibility: visible;
+  position: relative; /* Mantém a altura do container */
+  pointer-events: auto; /* Só o slide visível é clicável */
 }
 
-.slide img {
+.slide img, .no-photo {
   width: 100%;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
+.no-photo {
+  height: 300px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.caption { margin-top: 15px; text-align: center; }
+.caption h3 { color: #ff85a2; font-size: 18px; margin-bottom: 5px; }
+.caption p { color: #ccc; font-size: 15px; }
 
 /* ================= SETAS ================= */
 .nav {
@@ -104,19 +120,20 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  font-size: 24px;
-  width: 45px;
-  height: 45px;
+  font-size: 22px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 50; /* Garante que fiquem acima das fotos */
+  z-index: 100;
+  backdrop-filter: blur(5px);
 }
 
-.prev { left: -15px; }
-.next { right: -15px; }
+.prev { left: -10px; }
+.next { right: -10px; }
 
 @media (max-width: 480px) {
-  .time-block span { font-size: 24px; }
+  .time-block span { font-size: 22px; }
   .prev { left: 5px; }
   .next { right: 5px; }
 }

@@ -23,7 +23,7 @@ function updateCounter() {
 setInterval(updateCounter, 1000);
 updateCounter();
 
-// ================= MÚSICA E ROLAGEM =================
+// ================= SOM E ROLAGEM =================
 function startExperience() {
   const music = document.getElementById("bg-music");
   if (music) {
@@ -31,46 +31,44 @@ function startExperience() {
     music.play();
     let vol = 0;
     const fade = setInterval(() => {
-      if (vol < 0.4) {
+      if (vol < 0.5) {
         vol += 0.05;
         music.volume = vol;
-      } else {
-        clearInterval(fade);
-      }
+      } else { clearInterval(fade); }
     }, 200);
   }
 
-  // Rola suavemente para a próxima "página"
   document.getElementById("story-section").scrollIntoView({ behavior: "smooth" });
 }
 
-// ================= SLIDER CORRIGIDO =================
-let currentSlide = 0;
+// ================= SLIDER (Sincronizado com HTML) =================
+// Descobre qual slide já começa com a classe 'active'
+let currentSlide = Array.from(document.querySelectorAll('.slide')).findIndex(s => s.classList.contains('active'));
+if (currentSlide === -1) currentSlide = 0;
 
 function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
-  
-  // Remove de todos
   slides.forEach(s => s.classList.remove("active"));
   
-  // Atualiza o índice
   currentSlide = (index + slides.length) % slides.length;
-  
-  // Ativa o slide atual
   slides[currentSlide].classList.add("active");
 }
 
-// Força o reconhecimento das funções pelos botões
-window.nextSlide = function() { showSlide(currentSlide + 1); }
-window.prevSlide = function() { showSlide(currentSlide - 1); }
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
 
-// ================= PARTÍCULAS DISCRETAS =================
+// ================= PARTÍCULAS LENTAS NO FUNDO =================
 tsParticles.load("tsparticles", {
   particles: {
-    number: { value: 3 }, // Só 3 coraçõezinhos
+    number: { value: 2 }, // Apenas 2 corações por vez para ser discreto
     shape: { type: "character", options: { character: { value: ["❤️"] } } },
     opacity: { value: 0.2 },
-    size: { value: { min: 8, max: 12 } },
-    move: { enable: true, speed: 0.4, direction: "top", outModes: "out" }
+    size: { value: { min: 10, max: 14 } },
+    move: { 
+      enable: true, 
+      speed: 0.3, // Super lento
+      direction: "top", 
+      outModes: "out" 
+    }
   }
 });
