@@ -49,18 +49,16 @@ let currentSlide = 0;
 
 function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
-  slides.forEach(slide => slide.classList.remove("active"));
+  
+  // Remove o active de todos
+  slides.forEach(slide => {
+    slide.classList.remove("active");
+  });
 
   currentSlide = (index + slides.length) % slides.length;
+  
+  // Adiciona ao atual - o CSS fará a transição de 1.5s
   slides[currentSlide].classList.add("active");
-}
-
-function nextSlide() {
-  showSlide(currentSlide + 1);
-}
-
-function prevSlide() {
-  showSlide(currentSlide - 1);
 }
 
 // ================= PARTÍCULAS =================
