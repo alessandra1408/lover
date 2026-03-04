@@ -9,15 +9,25 @@ function updateCounter() {
   const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
   const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
 
+  const years = Math.floor(daysTotal / 365);
   const months = Math.floor((daysTotal % 365) / 30);
   const days = (daysTotal % 365) % 30;
 
+  const yearsBlock = years > 0
+    ? `<div class="time-block"><span>${years}</span><small>anos</small></div>`
+    : "";
+
   document.getElementById("counter").innerHTML = `
-    <div class="time-block"><span>${months}</span><small>m</small></div>
-    <div class="time-block"><span>${days}</span><small>d</small></div>
-    <div class="time-block"><span>${hours}</span><small>h</small></div>
-    <div class="time-block"><span>${minutes}</span><small>min</small></div>
-    <div class="time-block"><span>${seconds}</span><small>s</small></div>
+    <div class="counter-row">
+      ${yearsBlock}
+      <div class="time-block"><span>${months}</span><small>meses</small></div>
+      <div class="time-block"><span>${days}</span><small>dias</small></div>
+    </div>
+    <div class="counter-row">
+      <div class="time-block"><span>${hours}</span><small>horas</small></div>
+      <div class="time-block"><span>${minutes}</span><small>minutos</small></div>
+      <div class="time-block"><span>${seconds}</span><small>segundos</small></div>
+    </div>
   `;
 }
 setInterval(updateCounter, 1000);
@@ -29,8 +39,31 @@ function startExperience() {
   document.getElementById("story-section").scrollIntoView({ behavior: "smooth" });
 }
 
+function backToStart() {
+  const heroSection = document.querySelector('.hero');
+  const storySection = document.querySelector('.story-section');
+
+  if (heroSection) {
+    heroSection.style.display = 'flex';
+  }
+  if (storySection) {
+    storySection.style.display = 'block';
+  }
+
+  document.querySelector('.hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // ================= NAVEGAÇÃO ENTRE PÁGINAS =================
+let lastTimelineScrollY = 0;
+
 function openDetailPage(pageNumber) {
+  const sourceItem = document.querySelector(`.timeline-item[data-page="${pageNumber}"]`);
+  if (sourceItem) {
+    triggerPulse(sourceItem);
+  }
+
+  lastTimelineScrollY = window.scrollY;
+
   // Esconde a página principal
   document.querySelector('.hero').style.display = 'none';
   document.querySelector('.story-section').style.display = 'none';
@@ -39,13 +72,6 @@ function openDetailPage(pageNumber) {
   const detailPage = document.getElementById(`detail-page-${pageNumber}`);
   if (detailPage) {
     detailPage.classList.remove('hidden');
-    
-    // Para a música anterior
-    const bgMusic = document.getElementById('bg-music');
-    if (bgMusic) {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-    }
     
     // Toca a música específica
     playDetailMusic(pageNumber);
@@ -62,7 +88,7 @@ function goBack() {
   });
   
   // Mostra a página principal
-  document.querySelector('.hero').style.display = 'flex';
+  document.querySelector('.hero').style.display = 'none';
   document.querySelector('.story-section').style.display = 'block';
   
   // Para a música de detalhe
@@ -72,8 +98,14 @@ function goBack() {
     detailMusic.currentTime = 0;
   }
   
-  // Scroll para o topo
-  window.scrollTo(0, 0);
+  // Volta para a trilha (não para a tela inicial)
+  const storySection = document.getElementById('story-section');
+  if (storySection) {
+    storySection.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
+  window.scrollTo({ top: lastTimelineScrollY, behavior: 'auto' });
+
+  updateCenterFocus();
 }
 
 function playDetailMusic(pageNumber) {
@@ -81,17 +113,28 @@ function playDetailMusic(pageNumber) {
   
   switch(pageNumber) {
     case 1:
-      musicSrc = 'static/music/sera_que_e_amor.mp3'; // Ou deixar em branco/outra música
+      musicSrc = 'static/music/lua_cheia\.mp3'; // Ou deixar em branco/outra música
       break;
     case 2:
       musicSrc = 'static/music/sera_que_e_amor.mp3'; // Será tocada ao entrar na página
       break;
     case 3:
-      musicSrc = 'static/music/aquele_dia.mp3'; // "Aquele dia" - Marina Sena
+      musicSrc = 'static/music/oba_la_vem_ela.mp3'; // "Aquele dia" - Marina Sena
       break;
     case 4:
-      musicSrc = 'static/music/sera_que_e_amor.mp3'; // Ou outra música
+      musicSrc = 'static/music/helipa.mp3'; // Ou outra música
       break;
+    case 5:
+      musicSrc = 'static/music/aquele_dia.mp3'; // "Undr" - Duda Beat
+      break;
+    case 6:
+      musicSrc = 'static/music/foi_assim.mp3'; // "Undr" - Duda Beat
+      break;
+    case 7:
+      musicSrc = 'static/music/disritmia.mp3'; // "Undr" - Duda Beat
+      break;
+    default:
+      musicSrc = '';
   }
   
   if (musicSrc) {
@@ -103,11 +146,70 @@ function playDetailMusic(pageNumber) {
       document.body.appendChild(detailMusic);
     }
     
+    detailMusic.pause();
     detailMusic.src = musicSrc;
     detailMusic.volume = 0.3;
-    detailMusic.play().catch(err => console.log('Audio play error:', err));
+    detailMusic.currentTime = 0;
+
+    detailMusic.onloadedmetadata = () => {
+      const startAt = Math.min(0.0, Math.max(0, detailMusic.duration - 0.1));
+      detailMusic.currentTime = startAt;
+      detailMusic.play().catch(err => console.log('Audio play error:', err));
+    };
+
+    detailMusic.load();
   }
 }
+
+// ================= FOCO AUTOMÁTICO NA TRILHA =================
+const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+let focusedItem = null;
+
+function triggerPulse(item) {
+  const content = item?.querySelector('.timeline-content');
+  if (!content) return;
+  content.classList.remove('pulse');
+  void content.offsetWidth;
+  content.classList.add('pulse');
+}
+
+function updateCenterFocus() {
+  if (!timelineItems.length) return;
+
+  const viewportCenterY = window.innerHeight / 2;
+  let closest = null;
+  let closestDistance = Infinity;
+
+  timelineItems.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    const itemCenterY = rect.top + rect.height / 2;
+    const distance = Math.abs(itemCenterY - viewportCenterY);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closest = item;
+    }
+  });
+
+  timelineItems.forEach(item => {
+    item.classList.remove('is-focused');
+    item.querySelector('.timeline-content')?.classList.remove('pulse');
+  });
+
+  if (closest && closestDistance < window.innerHeight * 0.35) {
+    closest.classList.add('is-focused');
+    closest.querySelector('.timeline-content')?.classList.add('pulse');
+    focusedItem = closest;
+  }
+}
+
+timelineItems.forEach(item => {
+  item.addEventListener('touchstart', () => triggerPulse(item), { passive: true });
+});
+
+window.addEventListener('scroll', updateCenterFocus, { passive: true });
+window.addEventListener('resize', updateCenterFocus);
+window.addEventListener('load', updateCenterFocus);
 
 // ================= PARTÍCULAS (O RETORNO) =================
 tsParticles.load("tsparticles", {

@@ -42,53 +42,94 @@
                           stroke="url(#gradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="24,12"/>
                 </svg>
                 
-                <div class="timeline-item" onclick="openDetailPage(1)">
+                <div class="timeline-item" data-page="1" onclick="openDetailPage(1)">
                     <div class="timeline-content">
                         <div class="timeline-circle">
-                            <div class="no-photo">💌</div>
+                           <img src="static/pictures/undr.jpeg" alt="Foto 1">
                         </div>
                         <div class="timeline-text">
-                            <h3>29 novembro 2024</h3>
-                            <p>O dia que te conheci</p>
+                            <h3>29 novembro de 2024</h3>
+                            <p>O dia que nos conhecemos</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item" onclick="openDetailPage(2)">
+                <div class="timeline-item" data-page="2" onclick="openDetailPage(2)">
                     <div class="timeline-content">
                         <div class="timeline-circle">
-                            <img src="static/pictures/pic1.jpeg" alt="Foto 1">
+                            <img src="static/pictures/dia5.jpeg" alt="Foto 05 Outubro de 2025">
                         </div>
                         <div class="timeline-text">
-                            <h3>05 Outubro 2025</h3>
+                            <h3>05 Outubro de 2025</h3>
                             <p>O dia que a gente se declarou</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item" onclick="openDetailPage(3)">
+                <div class="timeline-item" data-page="3" onclick="openDetailPage(3)">
                     <div class="timeline-content">
                         <div class="timeline-circle">
-                            <div class="no-photo">💌</div>
+                            <img src="static/pictures/dia2.jpeg" alt="Foto 02 Novembro de 2025">
                         </div>
                         <div class="timeline-text">
-                            <h3>02 Novembro 2025</h3>
-                            <p>Nos amávamos 💖</p>
+                            <h3>02 Novembro de 2025</h3>
+                            <p>O dia do "eu te amo" 💖</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item" onclick="openDetailPage(4)">
+                <div class="timeline-item" data-page="4" onclick="openDetailPage(4)">
                     <div class="timeline-content">
                         <div class="timeline-circle">
-                            <div class="no-photo">✨</div>
+                            <img src="static/pictures/aliancas.jpeg" alt="Foto 22 Novembro de 2025">
                         </div>
                         <div class="timeline-text">
-                            <h3>O dia que nos conhecemos</h3>
-                            <p>Começava a melhor parte da minha vida</p>
+                            <h3>22 Novembro de 2025</h3>
+                            <p>O dia do pedido oficial 💍</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="timeline-item" data-page="5" onclick="openDetailPage(5)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <img src="static/pictures/parada_lgbt_foco.jpeg" alt="Foto 29 de Novembro de 2025">
+                        </div>
+                        <div class="timeline-text">
+                            <h3>29 de Novembro de 2025</h3>
+                            <p>Nossa primeira parada LGBT de Floripa juntas 🏳️‍🌈</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-page="6" onclick="openDetailPage(6)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <img src="static/pictures/ursinhos.jpeg" alt="Foto 20 de Dezembro de 2025">
+                        </div>
+                        <div class="timeline-text">
+                            <h3>20 de Dezembro de 2025</h3>
+                            <p>Nosso dia de jogos e ursinhos 🧸</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-page="7" onclick="openDetailPage(7)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <img src="static/pictures/boneco_ovo.jpeg" alt="Foto 25 de Dezembro de 2025">
+                        </div>
+                        <div class="timeline-text">
+                            <h3>25 de Dezembro de 2025</h3>
+                            <p>Nosso natal em família 🎄</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="trail-end-actions">
+                <button class="trail-back-top-btn" onclick="backToStart()">Voltar ao começo ↑</button>
             </div>
         </section>
 
@@ -99,12 +140,12 @@
             <button class="back-btn" onclick="goBack()">← Voltar</button>
             <div class="detail-container">
                 <div class="detail-image">
-                    <div class="no-photo-large">💌</div>
+                    <img src="static/pictures/undr.jpeg" alt="Foto 29 de Novembro de 2024">
                 </div>
                 <div class="detail-content">
                     <h2>29 de Novembro de 2024</h2>
-                    <p class="detail-text">
-                        [Aqui vai o texto de declaração do dia que te conheci...]
+                    <p class="detail-text" style="text-align: justify;">
+                        Aquele dia na festa da UNDR foi quando nos conhecemos. Você me encontrou. Foi tão natural e tão você - aquele sorriso fácil malicioso e aquele olhar devorador que não deixava dúvida do que você queria. No começo fiquei tímida e envergonhada, mas você era tão linda e confiante. Eu sorri para você, você retribuiu o sorriso e eu já me derreti na hora. Sua segurança, sua beleza, sua leveza, aquela forma de ser tão genuína... Depois disso, começamos a nos encontrar em todo lugar - festas, roles, encontros aleatórios (e sem precisar marcar nada). Era como se a gente se procurasse naturalmente, como se estivéssemos sincronizadas (ou melhor, alinhadas).
                     </p>
                 </div>
             </div>
@@ -115,12 +156,12 @@
             <button class="back-btn" onclick="goBack()">← Voltar</button>
             <div class="detail-container">
                 <div class="detail-image">
-                    <img src="static/pictures/pic1.jpeg" alt="Foto 05 Outubro">
+                    <img src="static/pictures/dia5.jpeg" alt="Foto 05 de Outubro de 2025">
                 </div>
                 <div class="detail-content">
                     <h2>05 de Outubro de 2025</h2>
-                    <p class="detail-text">
-                        [Aqui vai o texto de declaração do dia que nos declaramos...]
+                    <p class="detail-text" style="text-align: justify;">
+                        A gente se reaproximou, começamos a passar todos os finais de semana juntas, se ver sempre que era possível, e foi tão natural. A gente se divertia tanto, era tão leve estar com você, e eu me sentia tão feliz. E aí, naquele dia 5 de outubro eu me declarei para você sem ao menos planejar ou perceber, só quis falar em voz alta "eu gosto de você". Você não respondeu logo de cara e eu fiquei pensando se era algo que só eu estava sentindo. Apesar disso, não tive receio nem medo de falar a segunda vez, pois era um fato o meu sentimento e eu queria compartilhar isso, então repeti e você se abriu confessando que sentia o mesmo. Dali para frente eu sabia que era um começo de uma coisa importante, um início de uma nova fase da nossa história.
                     </p>
                 </div>
             </div>
@@ -131,32 +172,102 @@
             <button class="back-btn" onclick="goBack()">← Voltar</button>
             <div class="detail-container">
                 <div class="detail-image">
-                    <div class="no-photo-large">💌</div>
+                    <img src="static/pictures/dia2.jpeg" alt="Foto 02 de Novembro de 2025">
                 </div>
                 <div class="detail-content">
                     <h2>02 de Novembro de 2025</h2>
                     <p class="detail-text">
-                        [Aqui vai o texto de declaração do dia que nos amávamos...]
+                        Este dia é bem importante pois foi o dia em que eu te pedi em namoro e que confessamos que a gente se amava. Eu já não aguentava mais segurar o que eu sentia, e queria falar para você o quanto eu te amava. Meu coração estava tão cheio de amor por você que eu não conseguia esconder ou fingir que não sentia. A gente estava em uma situação um pouco delicada (kkkkk), mas eu sei que você gostou, foi um momento de muita conexão, de muita emoção, e eu me senti tão feliz e tão amada. Eu queria que aquele momento fosse eterno, e eu queria que você soubesse o quanto eu te amava. E foi tão lindo quando a gente se declarou, quando a gente falou "eu te amo" pela primeira vez. Foi um momento tão especial, tão único, e eu vou guardar para sempre no meu coração.
+                    </p>
+                </div>
+                 <div class="detail-image">
+                    <img src="static/pictures/amo_na_cozinha.jpeg" alt="Foto 02 de Novembro de 2025">
+                </div>
+                 <div class="detail-content">
+                    <h2>02 de Novembro de 2025</h2>
+                    <p class="detail-text">
+                        A única foto que eu tenho do dia 02. Eu tirei ela com você fazendo algo no fogão para a gente, para registrar a visão tão perfeita e linda que eu tenho todos os dias no cotidiano, que é a visão de você, do seu sorriso, do seu olhar, da sua presença. Eu amo tanto essa foto, ela me lembra do quanto eu te amo e do quanto eu sou feliz por ter você na minha vida em cada detalhe simples. Eu amo a gente, amo o nosso amor, eu amo tudo o que a gente tem, e eu amo você.
+                    </p>
+                </div>
+            </div>
+        </section>
+     
+        <!-- Página 4: 22 de Novembro de 2025 -->
+        <section id="detail-page-4" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                    <img src="static/pictures/aliancas.jpeg" alt="Foto 22 de Novembro de 2025">
+                </div>
+                <div class="detail-content">
+                    <h2>22 de Novembro de 2025</h2>
+                    <p class="detail-text">
+                        Dia da surpresa que eu fiz para você, o dia do pedido oficial. Eu queria fazer algo especial para você, algo que mostrasse o quanto eu te amava e o quanto aquilo significava para mim. A gente saiu do show do Yago e foi para a minha casa, eu tinha passado o dia montando a surpresa, essa que eu ja estava planejando há semanas. Foi uma torutura esperar para poder te mostrar tudo. Quando chegamos e era a hora de você receber a surpresa eu morri de vergonha, medo de você achar aquilo muito cafona ou feio, mas eu havia feito com todo o amor do mundo então fui com vergonha mesmo! Você também estava morrendo de vergonha, aliás rsrs. Na hora de entregar as alianças eu me tremia inteira, você sempre sabendo o que fazer nessas horas, como sempre, me abraçou e me tranquilizou. Eu amei tudo naquele momento e queria conseguir expressar em palavras todo o meu amor por você.
+                    </p>
+                </div>
+                <div class="detail-content">
+                    <video controls autoplay width="100%" style="max-width: 800px; border-radius: 12px; box-shadow: 0 8px 32px rgba(255, 133, 162, 0.3); margin-top: 20px;" poster="static/pictures/surpresa.jpeg">
+                        <source src="static/videos/surpresa.mp4" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 5: 29 de Novembro de 2025 -->
+        <section id="detail-page-5" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                     <img src="static/pictures/parada_lgbt.jpeg" alt="Foto 29 de Novembro de 2025">
+                </div>
+                <div class="detail-content">
+                    <h2>29 de Novembro de 2025</h2>
+                    <p class="detail-text">
+                        Este dia foi muito especial pois participamos da Parada LGBT juntas. Nesse dia também eu (boca de sacola como sempre) acabei confessando que já imaginava muitas coisas no futuro com você, imaginava uma vida com você. Por ser "cedo" eu não queria falar, mas acabou sendo impossível não contar. Mas com você tudo sempre foi tão natural e de muita conexão, tudo sempre fluiu tão bem. Você me beijou e me deixou no lugar mais feliz e confortável do mundo, o se abraço.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Página 4: Dia que nos conhecemos -->
-        <section id="detail-page-4" class="detail-page hidden">
+        <section id="detail-page-6" class="detail-page hidden">
             <button class="back-btn" onclick="goBack()">← Voltar</button>
             <div class="detail-container">
                 <div class="detail-image">
-                    <div class="no-photo-large">✨</div>
+                     <img src="static/pictures/ursinhos.jpeg" alt="Foto 20 de Dezembro de 2025">
                 </div>
                 <div class="detail-content">
-                    <h2>O Dia que nos Conhecemos</h2>
+                    <h2>20 de Dezembro de 2025</h2>
                     <p class="detail-text">
-                        [Aqui vai o texto de declaração sobre esse dia especial...]
+                        Este dia foi tão leve e divertido, a gente jogou, pegou ursinhos nas máquinas (que acabou se tornando um vício nosso, rs) competiu, você riu da minha cara e me humilhou em todos os jogos (ksksksks) se divertiu tanto. Foi um dia tão nosso, tão a nossa cara, e eu me senti muito feliz. Eu a sua risada e o seu sorriso, amo ainda mais quando estamos rindo juntas. Eu queria que aquele dia durasse para sempre.
                     </p>
                 </div>
             </div>
         </section>
+
+        <section id="detail-page-7" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                     <img src="static/pictures/ceia_natal.jpeg" alt="Foto 25 de Dezembro de 2025">
+                </div>
+                <div class="detail-content">
+                    <h2>25 de Dezembro de 2025</h2>
+                    <p class="detail-text">
+                        Nosso primeiro natal juntas e melhor ainda, em família. Fiquei muito feliz de você ter aceitado passar junto com a gente, foi muito especial e importante para mim. Aquele dia eu queria que você entendesse que você é parte da minha família, que eu te amo tanto e que eu quero compartilhar todos os momentos importantes da minha vida com você. Eu me senti tão feliz de ter você ali, de poder passar aquele dia tão especial com você.
+                    </p>
+                </div>
+                 <div class="detail-image">
+                     <img src="static/pictures/boneco_ovo.jpeg" alt="Foto 25 de Dezembro de 2025">
+                </div>
+                <div class="detail-content">
+                    <p class="detail-text">
+                        Deixei o boneco de ovo muito fofinho para nos lembrar desse dia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script src="static/js/script.js"></script>
