@@ -1,80 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nossa História 💖</title>
-
-  <link rel="stylesheet" href="static/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-  <script src="static/js/script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Favorita 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-all@2.12.0/tsparticles.all.bundle.min.js"></script>
 </head>
+<body data-start="2025-10-05T21:30:00"> <div id="tsparticles"></div>
 
-<body data-start="2025-10-05T21:30:00">
-  <!-- Partículas -->
-  <div id="tsparticles"></div>
+    <main class="container">
+        <section class="hero">
+            <h1 class="counter-title">Nosso tempo juntos...</h1>
+            <div id="counter">
+                </div>
+            <button class="start-btn" onclick="startExperience()">Começar nossa história ✨</button>
+        </section>
 
-  <!-- Música -->
-  <audio id="bg-music" loop>
-    <source src="static/music/sera_que_e_amor.mp3" type="audio/mpeg">
-  </audio>
+        <section id="story-section" class="section">
+            <div class="story-slider">
+                <button class="nav prev" onclick="prevSlide()">❮</button>
+                <button class="nav next" onclick="nextSlide()">❯</button>
 
-  <div class="container">
+                <div class="slides-container">
+                  <div class="slide">
+                        <div class="no-photo">💌</div>
+                        <div class="caption">
+                            <h3>29 novembro 2024</h3>
+                            <p>O dia que te conheci</p>
+                        </div>
+                  </div>  
 
-    <!-- Seção contador -->
-    <div class="section hero">
-      <h1 class="counter-title">Estamos juntas há</h1>
-      <div id="counter"></div>
+                    <div class="slide active">
+                        <img src="static/pictures/pic1.jpeg" alt="Foto 1">
+                        <div class="caption">
+                            <h3>05 Outubro 2025</h3>
+                            <p>O dia que a gente se declarou e falou que se gostava 💖</p>
+                        </div>
+                    </div>
 
-      <button class="start-btn" onclick="startExperience()">
-        💖 Ver nossa história
-      </button>
-    </div>
+                    <div class="slide">
+                        <div class="no-photo">💌</div>
+                        <div class="caption">
+                            <h3>02 Novembro 2025</h3>
+                            <p>O dia que eu te pedi em namoro e falamos que nos amávamos 💖</p>
+                        </div>
+                    </div>
 
-    <!-- Seção história -->
-    <div class="section">
+                    <div class="slide">
+                        <div class="no-photo">✨</div>
+                        <div class="caption">
+                            <h3>O dia que nos conhecemos</h3>
+                            <p>Eu não sabia, mas ali começava a melhor parte da minha vida.</p>
+                        </div>
+                    </div>
 
-      <div class="story-slider">
-
-        <button class="nav prev" onclick="prevSlide()">❮</button>
-
-        <div class="slides">
-
-          <!-- Slide com foto -->
-          <div class="slide active">
-            <img src="static/pictures/pic1.jpeg">
-            <div class="caption">
-              <h3>05 Outubro 2025</h3>
-              <p>O dia que tudo começou. O dia que eu soube que era você. 💖</p>
+                </div>
             </div>
-          </div>
+        </section>
+    </main>
 
-          <!-- Slide sem foto -->
-          <div class="slide">
-            <div class="no-photo">💌</div>
-            <div class="caption">
-              <h3>O dia da minha declaração</h3>
-              <p>Eu tremia... mas faria mil vezes de novo por você.</p>
-            </div>
-          </div>
+    <audio id="bg-music" loop>
+        <source src="static/music/sua-musica.mp3" type="audio/mpeg">
+    </audio>
 
-          <!-- Outro exemplo -->
-          <div class="slide">
-            <div class="no-photo">✨</div>
-            <div class="caption">
-              <h3>O dia que nos conhecemos</h3>
-              <p>Eu não sabia, mas ali começava a melhor parte da minha vida.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <button class="nav next" onclick="nextSlide()">❯</button>
-
-      </div>
-    </div>
-
-  </div>
-
+    <script src="script.js"></script>
 </body>
 </html>

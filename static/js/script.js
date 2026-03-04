@@ -31,35 +31,41 @@ function updateCounter() {
 setInterval(updateCounter, 1000);
 updateCounter();
 
-// ================= MÚSICA =================
+// ================= MÚSICA E ROLAGEM =================
 
 function startExperience() {
   const music = document.getElementById("bg-music");
-  music.play();
+  if (music) music.play().catch(e => console.log("Erro ao tocar música:", e));
 
-  window.scrollTo({
-    top: window.innerHeight,
-    behavior: "smooth"
-  });
+  const storySection = document.getElementById("story-section");
+  if (storySection) {
+    storySection.scrollIntoView({ 
+      behavior: "smooth", 
+      block: "center" 
+    });
+  }
 }
 
-// ================= SLIDER =================
+// ================= SLIDER CORRIGIDO =================
 
 let currentSlide = 0;
 
 function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
-  
-  // Remove o active de todos
-  slides.forEach(slide => {
-    slide.classList.remove("active");
-  });
+  if (slides.length === 0) return;
 
+  // Remove active de todos
+  slides.forEach(slide => slide.classList.remove("active"));
+
+  // Calcula o próximo índice circularmente
   currentSlide = (index + slides.length) % slides.length;
   
-  // Adiciona ao atual - o CSS fará a transição de 1.5s
+  // Adiciona active ao atual
   slides[currentSlide].classList.add("active");
 }
+
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
 
 // ================= PARTÍCULAS =================
 
@@ -76,7 +82,5 @@ tsParticles.load("tsparticles", {
       outModes: { default: "out" }
     }
   },
-  background: {
-    color: "transparent"
-  }
+  background: { color: "transparent" }
 });

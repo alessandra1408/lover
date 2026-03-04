@@ -18,8 +18,12 @@ body {
   text-align: center;
 }
 
+/* Centralização Vertical das Seções */
 .section {
-  margin: 60px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero {
@@ -27,6 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .counter-title {
@@ -63,7 +68,7 @@ body {
   color: #aaa;
 }
 
-/* ================= BOTÃO ================= */
+/* ================= BOTÃO INICIAL ================= */
 
 .start-btn {
   background: linear-gradient(135deg, #ff4d88, #ff85a2);
@@ -81,19 +86,18 @@ body {
   transform: scale(1.05);
 }
 
-/* ================= SLIDER MELHORADO ================= */
+/* ================= SLIDER FADE LENTO ================= */
 
 .story-slider {
   position: relative;
   max-width: 420px;
+  width: 100%;
   margin: auto;
-  overflow: hidden; /* Garante que nada saia das bordas arredondadas */
 }
 
-/* Container dos slides para permitir sobreposição no fade */
 .slides-container {
   position: relative;
-  height: 450px; /* Ajuste conforme a altura das suas fotos */
+  min-height: 500px; /* Altura segura para as fotos + legendas */
 }
 
 .slide {
@@ -104,72 +108,85 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
-  transform: scale(0.95); /* Leve efeito de zoom ao trocar */
+  transform: scale(0.95);
+  z-index: 1;
 }
 
 .slide.active {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
-  position: relative; /* O slide ativo define a altura do container */
+  z-index: 2;
+  position: relative; /* Faz o container esticar baseado no slide ativo */
 }
 
 .slide img {
   width: 100%;
   border-radius: 18px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  display: block;
 }
 
-/* ================= NAV (SETINHAS FOFAS) ================= */
+.no-photo {
+  height: 300px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #2b2b2b, #1a1a1a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.caption {
+  margin-top: 20px;
+}
+
+.caption h3 {
+  font-size: 18px;
+  color: #ff85a2;
+  margin-bottom: 8px;
+}
+
+.caption p {
+  font-size: 15px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+/* ================= NAV (SETINHAS) ================= */
 
 .nav {
   position: absolute;
-  top: 50%;
+  top: 40%; /* Ajustado para ficar na altura da imagem */
   transform: translateY(-50%);
-  background: rgba(255, 155, 179, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
   font-size: 24px;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
   border-radius: 50%;
   backdrop-filter: blur(8px);
   color: white;
-  z-index: 10;
+  z-index: 20; /* Sempre acima de tudo */
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
-  animation: floatArrows 3s ease-in-out infinite; /* Animação flutuante */
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.prev { left: -15px; }
+.next { right: -15px; }
 
 .nav:hover {
   background: #ff85a2;
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 15px rgba(255, 133, 162, 0.6);
 }
-
-/* Animação suave para as setas */
-@keyframes floatArrows {
-  0%, 100% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-50%) translateX(5px); }
-}
-
-.prev { animation-delay: 0.5s; } /* Desencontro das setas para ficar orgânico */
-.next { animation-delay: 1s; } /* Desencontro das setas para ficar orgânico */
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 480px) {
-  .time-block span {
-    font-size: 34px;
-  }
-
-  .story-slider {
-    max-width: 100%;
-  }
+  .time-block span { font-size: 34px; }
+  .prev { left: 5px; }
+  .next { right: 5px; }
 }
