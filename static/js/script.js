@@ -37,6 +37,11 @@ updateCounter();
 function startExperience() {
   // Rola suavemente para a próxima "página"
   document.getElementById("story-section").scrollIntoView({ behavior: "smooth" });
+
+  const video = document.querySelector('video');
+  if (video) {
+    video.muted = false; // Garante que o som esteja ligado
+  }
 }
 
 function backToStart() {
