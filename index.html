@@ -11,58 +11,153 @@
 
     <main class="container">
         <section class="hero">
-            <h1 class="counter-title">Nosso tempo juntos...</h1>
+            <h1 class="counter-title">Nosso tempo juntas</h1>
             <div id="counter">
                 </div>
-            <button class="start-btn" onclick="startExperience()">Começar nossa história ✨</button>
+            <button class="start-btn" onclick="startExperience()">Começar nossa história</button>
         </section>
 
-        <section id="story-section" class="section">
-            <div class="story-slider">
-                <button class="nav prev" onclick="prevSlide()">❮</button>
-                <button class="nav next" onclick="nextSlide()">❯</button>
+        <section id="story-section" class="story-section">
+            <div class="timeline">
+                <svg class="timeline-line" viewBox="0 0 900 1400" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="12%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="16%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="32%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="36%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="46%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="50%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="64%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="68%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="78%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="82%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="95%" style="stop-color:#ff85a2;stop-opacity:0.05" />
+                            <stop offset="99%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#ff85a2;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 450 40 Q 50 160 450 280 Q 850 400 450 520 Q 50 640 450 760 Q 850 880 450 1000 Q 50 1120 450 1350" 
+                          stroke="url(#gradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="24,12"/>
+                </svg>
+                
+                <div class="timeline-item" onclick="openDetailPage(1)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <div class="no-photo">💌</div>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>29 novembro 2024</h3>
+                            <p>O dia que te conheci</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="slides-container">
-                    <div class="slide">
-                          <div class="no-photo">💌</div>
-                          <div class="caption">
-                              <h3>29 novembro 2024</h3>
-                              <p>O dia que te conheci</p>
-                          </div>
-                    </div>  
-
-                    <div class="slide active">
-                        <img src="static/pictures/pic1.jpeg" alt="Foto 1">
-                        <div class="caption">
+                <div class="timeline-item" onclick="openDetailPage(2)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <img src="static/pictures/pic1.jpeg" alt="Foto 1">
+                        </div>
+                        <div class="timeline-text">
                             <h3>05 Outubro 2025</h3>
-                            <p>O dia que a gente se declarou e falou que se gostava 💖</p>
+                            <p>O dia que a gente se declarou</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="slide">
-                        <div class="no-photo">💌</div>
-                        <div class="caption">
+                <div class="timeline-item" onclick="openDetailPage(3)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <div class="no-photo">💌</div>
+                        </div>
+                        <div class="timeline-text">
                             <h3>02 Novembro 2025</h3>
-                            <p>O dia que eu te pedi em namoro e falamos que nos amávamos 💖</p>
+                            <p>Nos amávamos 💖</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="slide">
-                        <div class="no-photo">✨</div>
-                        <div class="caption">
+                <div class="timeline-item" onclick="openDetailPage(4)">
+                    <div class="timeline-content">
+                        <div class="timeline-circle">
+                            <div class="no-photo">✨</div>
+                        </div>
+                        <div class="timeline-text">
                             <h3>O dia que nos conhecemos</h3>
-                            <p>Eu não sabia, mas ali começava a melhor parte da minha vida.</p>
+                            <p>Começava a melhor parte da minha vida</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- ================= PÁGINAS DEDICADAS ================= -->
+        
+        <!-- Página 1: 29 Novembro -->
+        <section id="detail-page-1" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                    <div class="no-photo-large">💌</div>
+                </div>
+                <div class="detail-content">
+                    <h2>29 de Novembro de 2024</h2>
+                    <p class="detail-text">
+                        [Aqui vai o texto de declaração do dia que te conheci...]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 2: 05 Outubro -->
+        <section id="detail-page-2" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                    <img src="static/pictures/pic1.jpeg" alt="Foto 05 Outubro">
+                </div>
+                <div class="detail-content">
+                    <h2>05 de Outubro de 2025</h2>
+                    <p class="detail-text">
+                        [Aqui vai o texto de declaração do dia que nos declaramos...]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 3: 02 Novembro -->
+        <section id="detail-page-3" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                    <div class="no-photo-large">💌</div>
+                </div>
+                <div class="detail-content">
+                    <h2>02 de Novembro de 2025</h2>
+                    <p class="detail-text">
+                        [Aqui vai o texto de declaração do dia que nos amávamos...]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 4: Dia que nos conhecemos -->
+        <section id="detail-page-4" class="detail-page hidden">
+            <button class="back-btn" onclick="goBack()">← Voltar</button>
+            <div class="detail-container">
+                <div class="detail-image">
+                    <div class="no-photo-large">✨</div>
+                </div>
+                <div class="detail-content">
+                    <h2>O Dia que nos Conhecemos</h2>
+                    <p class="detail-text">
+                        [Aqui vai o texto de declaração sobre esse dia especial...]
+                    </p>
                 </div>
             </div>
         </section>
     </main>
-
-    <audio id="bg-music" loop>
-        <source src="static/music/sera_que_e_amor.mp3" type="audio/mpeg">
-    </audio>
 
     <script src="static/js/script.js"></script>
 
